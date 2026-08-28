@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+ 
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #1a1a2e;
+    color: #fff;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.navbar {
+    background-color: #16213e;
+    padding: 1rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-linksa {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+
+.main-content {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.main-contenth2 {
+    margin-bottom: 1.5rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 04px6pxrgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.cardh3 {
+    font-size: 1rem;
+    color: #666;
+}
+
+.card-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e94560;
+}
+
+
+.sidebar {
+    background-color: #fff;
+    padding: 1.5rem;
+    margin: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 04px6pxrgba(0,0,0,0.05);
+}
+
+.activity-list {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.activity-listli {
+    padding-bottom: 0.5rem;
+    border-bottom: 1pxsolid#eee;
+    font-size: 0.9rem;
+}
+
+
+.footer {
+    background-color: #1a1a2e;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+
+@media (min-width: 768px) {
+
+    .app-container {
+        display: grid;
+        grid-template-areas:
+            "header header"
+            "nav nav"
+            "main sidebar"
+            "footer footer";
+        grid-template-columns: 1fr300px;
+        grid-template-rows: autoauto1frauto;
+    }
+
+    .header {
+        grid-area: header;
+    }
+
+    .navbar {
+        grid-area: nav;
+        padding: 01.5rem;
+    }
+
+
+    .nav-links {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 1rem0;
+    }
+
+    .main-content {
+        grid-area: main;
+    }
+
+ 
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    .sidebar {
+        grid-area: sidebar;
+        margin: 1.5rem1.5rem1.5rem0;
+    }
+
+    .footer {
+        grid-area: footer;
+    }
+}
