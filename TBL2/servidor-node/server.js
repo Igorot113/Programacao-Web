@@ -1,20 +1,29 @@
 const http = require('http');
-
-const servidor = http.createServer((req,res) => {
-    if(req.url === '/api') {
-        res.setHeader('Content-Type','application/json');
-        const dados = {
-            nome: 'Carlos',
-            idade: 28
-        };
-        res.end(JSON.stringify(dados));
-    }else{
-        res.end('Rota invalida');
+const pool = require('./db');
+const servidor = http.createServer(async(req, res) => {
+    if (req.url === '/usuario') {
+        try {
+            const resultado = await pool.query('SELECT * FROM usuarios');
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(resultado.rows));
+        } catch (erro) {
+            res.statusCode = 500;
+            res.end('Erro ao buscar dados');
+        }
     }
+    else if (req.url ==='/usuario/2') {
+    try {
+        const resultado = await pool.query('SELECT * FROM usuarios WHERE id = 2');
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(resultado.rows[0]));
+    } catch (erro) {
+        res.statusCode = 500;
+        res.end('Erro');
+    }
+    }
+    else {
+        res.end('Rota inválida');
+    }});
+servidor.listen(3000, () => {
+console.log('Servidor rodando em http://localhost:3000');
 });
-
-fetch('http://localhost:3000/api')
-.then(res => res.json())
-.then(dados => console.log(dados));
-
-servidor.listen(3000);
