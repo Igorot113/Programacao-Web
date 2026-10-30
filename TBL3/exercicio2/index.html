@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercício 2</title>
+</head>
+
+<body>
+  <h1>Exercício 2</h1>
+  <button id="buscar">Buscar usuários</button>
+  <script>
+    async function buscarUsuarios() {
+      try {
+        const resposta = await fetch('http://localhost:3000/usuarios');
+        if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
+        const usuarios = await resposta.json();
+        console.log('Usuários:', usuarios);
+        document.getElementById('resultado').textContent = JSON.stringify(usuarios, null, 2);
+      } catch (erro) {
+        console.error('Erro na requisição:', erro);
+        document.getElementById('resultado').textContent = 'Erro: veja o Console (F12).';
+      }
+    }
+    document.getElementById('buscar').addEventListener('click', buscarUsuarios);
+
+  </script>
+</body>
+
+</html>
